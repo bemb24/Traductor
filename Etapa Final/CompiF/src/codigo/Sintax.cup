@@ -1,0 +1,72 @@
+package codigo;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    private Symbol s;
+    
+    public void syntax_error(Symbol s){
+        this.s = s;
+    }
+
+    public Symbol getS(){
+        return this.s;
+}
+:};
+
+terminal hola, adios, ERROR;
+terminal yo, tú, él, ella, ello, nosotros, ellos;
+terminal rojo, amarillo, rosado, morado, azul, naranja, verde, blanco, gris, negro;
+terminal bueno, malo, delgado, gordo, seco, corto, este, aquel, estos, aquellos;
+terminal cada, todo, algún, cualquier, qué, cuál, de_quién, cuantos;
+terminal mi, tu, su, nuestro, es, tengo, soy, eres, si, no;
+terminal perro, gato, gallo, gallina, obeja, pato, pavo, conejo, cerdo, vaca, pingüino, venado, ballena, caballo, rana, toro;
+terminal hombre, hombres, mujer, mujeres, niño, niños, niña, niñas;
+terminal carro, avión, bicicleta, bus, barco, tren;
+terminal empleos, enfermera, doctor, maestro, cocinero, granjero, contador, arquitecto, astronauta, panadero, carnicero, carpintero, cajero, limpio, payaso;
+terminal cabello, cabeza, oreja, ojos, nariz, boca, hombro, brazo, pierna, pie, pies, cara, dientes, lengua, frente, higado, riñones, cerebro, corazon, pulmones, tobillo, espinilla, codo, dedos, palma, rodilla, mano;
+terminal libro, escritorio, silla, computadora, pegamento, balcon, tello, cornisa, corredor, piso, fuente, galeria, pasillo;
+terminal una, un, el, la, lo, los, las;
+terminal aeropuerto, panaderia, banco, cafe, iglesia, gimnasio, lavanderia, libreria, museo, farmacia, escuela;
+terminal norte, sur, oeste, calle, izquierda, derecha;
+terminal habitacion, escaleras, puerta, casa, cocina, jardin, baño, dormitorio, salon, sala, comedor;
+terminal ser, convertirse, comenzar, morder, soplar, traer, quemar, comprar, poder, venir, dibujar, soñar, conducir, comer, luchar, volar, obtener, dar, ir ,tener, escuchar, herir, escribir;
+terminal mantener, saber, salir, dejar, mentir, luz, perder, hacer, poner, leer, levantar, correr, decir, ver, vender, mostrar, cantar, dormir, hablar, nadar, tomar, enseñar, contar, pensar, despertar, ganar;
+terminal  pero, sin_embargo, en_su_lugar, porque, de, puesto_que,que, a, para, en, con;
+non terminal O_AFIRMATIVA, O_NEGATIVA, INTERROGACION, SIGNO, SALUDO, SUJETO, COLOR, VERBO, AUXILIAR, AUX_NEG, ANIMALES, COSAS, PROFESIONES, CUERPO, DIRECCIONES, LUGARES, PCASA;
+
+
+O_AFIRMATIVA ::= AUXILIAR SUJETO VERBO |AUXILIAR+ ANIMALES| AUXILIAR+ COSAS| AUXILIAR+ COLOR| AUXILIAR+ PROFESIONES| AUXILIAR+ CUERPO| AUXILIAR+ DIRECCIONES| AUXILIAR+ LUGARES| AUXILIAR+ PCASA
+;
+O_NEGATIVA ::= AUXILIAR SUJETO AUX_NEG VERBO |AUXILIAR+ ANIMALES| AUXILIAR+ COSAS |AUXILIAR+ COLOR |AUXILIAR+ PROFESIONES| AUXILIAR+ CUERPO| AUXILIAR+ DIRECCIONES| AUXILIAR+ LUGARES| AUXILIAR+ PCASA
+;
+INTERROGACION ::= AUXILIAR SUJETO VERBO |AUXILIAR+ ANIMALES| AUXILIAR+ COSAS| AUXILIAR+ COLOR |AUXILIAR+ PROFESIONES| AUXILIAR+ CUERPO |AUXILIAR+ DIRECCIONES| AUXILIAR+ LUGARES| AUXILIAR+ PCASA
+;
+SALUDO ::= hola|adios
+;
+SUJETO ::= yo|tú|él|ella|ello|nosotros|ellos|ANIMALES|PROFESIONES|COLOR|LUGARES|PCASA
+;
+ANIMALES ::= perro|gato|gallo|gallina|obeja|pato|pavo|conejo|cerdo|vaca|pingüino|venado|ballena|caballo|rana|toro
+;
+COSAS ::= libro|escritorio|silla|computadora|pegamento|balcon|tello|cornisa|corredor|piso|fuente|galeria|pasillo
+;
+COLOR ::= rojo|amarillo|rosado|morado|azul|naranja|verde|blanco|gris|negro
+;
+PROFESIONES ::= empleos|enfermera|doctor|maestro|cocinero|granjero|contador|arquitecto|astronauta|panadero|carnicero|carpintero|cajero|limpio|payaso
+;
+CUERPO ::= cabello|cabeza|oreja|ojos|nariz|boca|hombro|brazo|pierna|pie|pies|cara|dientes|lengua|frente|higado|riñones|cerebro|corazon|pulmones|tobillo|espinilla|codo|dedos|palma|rodilla|mano
+;
+VERBO ::= ser|convertirse|comenzar|morder|soplar|traer|quemar|comprar|poder|venir|dibujar|soñar|conducir|comer|luchar|volar|obtener|dar|ir|tener|escuchar|herir|escribir|
+          mantener|saber|salir|dejar|mentir|luz|perder|hacer|poner|leer|levantar|correr|decir|ver|vender|mostrar|cantar|dormir|hablar|nadar|tomar|enseñar|contar|pensar|despertar|ganar
+;
+AUXILIAR ::= SALUDO|pero|sin_embargo|en_su_lugar|porque|de|puesto_que|que|a|para|en|con|una|un|el|la|lo|los|las|cada|todo|algún|cualquier|qué|cuál|de_quién|cuantos|mi|tu|su|nuestro|es|tengo|soy|eres|si|no
+;
+AUX_NEG ::= no
+;
+DIRECCIONES ::= norte|sur|oeste|calle|izquierda|derecha
+;
+LUGARES ::= aeropuerto|panaderia|banco|cafe|iglesia|gimnasio|lavanderia|libreria|museo|farmacia|escuela
+;
+PCASA ::= habitacion|escaleras|puerta|casa|cocina|jardin|baño|dormitorio|salon|sala|comedor
+;
